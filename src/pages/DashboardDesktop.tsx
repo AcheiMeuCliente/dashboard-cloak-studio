@@ -17,6 +17,24 @@ const DashboardDesktop = () => {
           overflow: hidden;
         }
         
+        html, body {
+          height: 100%;
+          width: 100%;
+        }
+        
+        /* Máscara adicional para desktop para garantir ocultação do footer */
+        .dashboard-container::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 100px;
+          background: white;
+          z-index: 10;
+          pointer-events: none;
+        }
+        
         @media screen and (min-width: 1024px) {
           .dashboard-container {
             zoom: 1;

@@ -15,25 +15,33 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
   };
 
   const containerStyle = isMobile 
-    ? "w-full h-screen bg-white"
-    : "w-full h-screen bg-white";
+    ? "w-full h-screen bg-white relative overflow-hidden"
+    : "w-full h-screen bg-white relative overflow-hidden";
 
   const iframeStyle = isMobile
     ? {
         width: '100%',
-        height: '100vh',
+        height: '120%',
         border: 'none',
         margin: 0,
         padding: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        transform: 'translateY(-60px)',
+        position: 'absolute' as const,
+        top: 0,
+        left: 0
       }
     : {
         width: '100%',
-        height: '100vh',
+        height: '110%',
         border: 'none',
         margin: 0,
         padding: 0,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        transform: 'translateY(-40px)',
+        position: 'absolute' as const,
+        top: 0,
+        left: 0
       };
 
   return (
@@ -53,7 +61,6 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
         onLoad={handleIframeLoad}
         allowFullScreen
         sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
-        className="absolute inset-0"
         title="Dashboard Looker Studio"
       />
       
@@ -66,17 +73,22 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
           display: none;
         }
         
-        iframe::after {
+        /* Máscara para ocultar footer */
+        .dashboard-mask::after {
           content: '';
           position: absolute;
-          top: 0;
+          bottom: 0;
           left: 0;
           right: 0;
-          height: 60px;
+          height: 80px;
           background: white;
-          z-index: 1000;
+          z-index: 5;
+          pointer-events: none;
         }
       `}</style>
+      
+      {/* Máscara para ocultar o footer */}
+      <div className="dashboard-mask absolute inset-0 pointer-events-none"></div>
     </div>
   );
 };

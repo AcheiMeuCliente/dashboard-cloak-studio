@@ -30,6 +30,63 @@ const DashboardMobile = () => {
           -webkit-tap-highlight-color: transparent;
         }
         
+        html, body {
+          height: 100%;
+          width: 100%;
+          position: fixed;
+        }
+        
+        /* iPhone 14 Pro (430x932) */
+        @media screen and (max-width: 430px) and (max-height: 932px) {
+          .dashboard-container iframe {
+            transform: scale(0.85) translateY(-80px);
+            transform-origin: top left;
+            width: 117.6%;
+            height: 130%;
+          }
+        }
+        
+        /* iPhone 14 (390x844) */
+        @media screen and (max-width: 390px) and (max-height: 844px) {
+          .dashboard-container iframe {
+            transform: scale(0.82) translateY(-70px);
+            transform-origin: top left;
+            width: 122%;
+            height: 125%;
+          }
+        }
+        
+        /* iPhone SE (375x667) */
+        @media screen and (max-width: 375px) and (max-height: 667px) {
+          .dashboard-container iframe {
+            transform: scale(0.75) translateY(-60px);
+            transform-origin: top left;
+            width: 133.3%;
+            height: 140%;
+          }
+        }
+        
+        /* Samsung Galaxy (360x640) e similares */
+        @media screen and (max-width: 360px) {
+          .dashboard-container iframe {
+            transform: scale(0.7) translateY(-50px);
+            transform-origin: top left;
+            width: 142.8%;
+            height: 150%;
+          }
+        }
+        
+        /* Paisagem mobile */
+        @media screen and (max-height: 500px) and (orientation: landscape) {
+          .dashboard-container iframe {
+            transform: scale(0.6) translateY(-40px);
+            transform-origin: top left;
+            width: 166.6%;
+            height: 180%;
+          }
+        }
+        
+        /* Otimizações para iOS */
         @supports (-webkit-touch-callout: none) {
           .dashboard-container {
             -webkit-overflow-scrolling: touch;
@@ -37,27 +94,10 @@ const DashboardMobile = () => {
           }
         }
         
+        /* Otimizações para Android */
         @media screen and (-webkit-min-device-pixel-ratio: 0) {
           .dashboard-container {
             transform: translateZ(0);
-          }
-        }
-        
-        @media screen and (max-width: 480px) {
-          iframe {
-            transform: scale(0.9);
-            transform-origin: top left;
-            width: 111.11%;
-            height: 111.11%;
-          }
-        }
-        
-        @media screen and (max-width: 360px) {
-          iframe {
-            transform: scale(0.8);
-            transform-origin: top left;
-            width: 125%;
-            height: 125%;
           }
         }
       `}</style>
