@@ -21,24 +21,24 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
   const iframeStyle = isMobile
     ? {
         width: '100%',
-        height: '120%',
+        height: '150%',
         border: 'none',
         margin: 0,
         padding: 0,
         overflow: 'hidden',
-        transform: 'translateY(-60px)',
+        transform: 'translateY(-80px)',
         position: 'absolute' as const,
         top: 0,
         left: 0
       }
     : {
         width: '100%',
-        height: '110%',
+        height: '120%',
         border: 'none',
         margin: 0,
         padding: 0,
         overflow: 'hidden',
-        transform: 'translateY(-40px)',
+        transform: 'translateY(-60px)',
         position: 'absolute' as const,
         top: 0,
         left: 0
@@ -62,6 +62,7 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
         allowFullScreen
         sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"
         title="Dashboard Looker Studio"
+        scrolling="no"
       />
       
       <style>{`
@@ -73,11 +74,11 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
           display: none;
         }
         
-        /* Máscara para ocultar footer */
-        .dashboard-mask::after {
+        /* Máscara para ocultar header */
+        .dashboard-mask::before {
           content: '';
           position: absolute;
-          bottom: 0;
+          top: 0;
           left: 0;
           right: 0;
           height: 80px;
@@ -85,9 +86,22 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
           z-index: 5;
           pointer-events: none;
         }
+        
+        /* Máscara para ocultar footer */
+        .dashboard-mask::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 120px;
+          background: white;
+          z-index: 5;
+          pointer-events: none;
+        }
       `}</style>
       
-      {/* Máscara para ocultar o footer */}
+      {/* Máscara para ocultar header e footer */}
       <div className="dashboard-mask absolute inset-0 pointer-events-none"></div>
     </div>
   );

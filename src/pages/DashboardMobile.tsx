@@ -28,62 +28,75 @@ const DashboardMobile = () => {
           -webkit-user-select: none;
           -webkit-touch-callout: none;
           -webkit-tap-highlight-color: transparent;
+          height: 100vh;
+          position: fixed;
+          width: 100%;
         }
         
         html, body {
-          height: 100%;
+          height: 100vh;
           width: 100%;
           position: fixed;
+          overflow: hidden;
         }
         
         /* iPhone 14 Pro (430x932) */
         @media screen and (max-width: 430px) and (max-height: 932px) {
           .dashboard-container iframe {
-            transform: scale(0.85) translateY(-80px);
+            transform: scale(0.75) translateY(-100px);
             transform-origin: top left;
-            width: 117.6%;
-            height: 130%;
+            width: 133.3%;
+            height: 160%;
           }
         }
         
         /* iPhone 14 (390x844) */
         @media screen and (max-width: 390px) and (max-height: 844px) {
           .dashboard-container iframe {
-            transform: scale(0.82) translateY(-70px);
+            transform: scale(0.72) translateY(-90px);
             transform-origin: top left;
-            width: 122%;
-            height: 125%;
+            width: 138.8%;
+            height: 155%;
           }
         }
         
         /* iPhone SE (375x667) */
         @media screen and (max-width: 375px) and (max-height: 667px) {
           .dashboard-container iframe {
-            transform: scale(0.75) translateY(-60px);
+            transform: scale(0.68) translateY(-80px);
             transform-origin: top left;
-            width: 133.3%;
-            height: 140%;
+            width: 147%;
+            height: 170%;
           }
         }
         
         /* Samsung Galaxy (360x640) e similares */
         @media screen and (max-width: 360px) {
           .dashboard-container iframe {
-            transform: scale(0.7) translateY(-50px);
+            transform: scale(0.65) translateY(-70px);
             transform-origin: top left;
-            width: 142.8%;
-            height: 150%;
+            width: 153.8%;
+            height: 180%;
           }
         }
         
         /* Paisagem mobile */
         @media screen and (max-height: 500px) and (orientation: landscape) {
           .dashboard-container iframe {
-            transform: scale(0.6) translateY(-40px);
+            transform: scale(0.5) translateY(-60px);
             transform-origin: top left;
-            width: 166.6%;
-            height: 180%;
+            width: 200%;
+            height: 220%;
           }
+        }
+        
+        /* Remove todas as barras de rolagem */
+        * {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        *::-webkit-scrollbar {
+          display: none;
         }
         
         /* Otimizações para iOS */

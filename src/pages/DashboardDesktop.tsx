@@ -15,11 +15,24 @@ const DashboardDesktop = () => {
           margin: 0;
           padding: 0;
           overflow: hidden;
+          height: 100vh;
+          position: fixed;
+          width: 100%;
         }
         
         html, body {
-          height: 100%;
+          height: 100vh;
           width: 100%;
+          overflow: hidden;
+        }
+        
+        /* Remove todas as barras de rolagem */
+        * {
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+        *::-webkit-scrollbar {
+          display: none;
         }
         
         /* Máscara adicional para desktop para garantir ocultação do footer */
@@ -29,7 +42,7 @@ const DashboardDesktop = () => {
           bottom: 0;
           left: 0;
           right: 0;
-          height: 100px;
+          height: 120px;
           background: white;
           z-index: 10;
           pointer-events: none;
