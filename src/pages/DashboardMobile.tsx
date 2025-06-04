@@ -19,8 +19,7 @@ const DashboardMobile = () => {
       
       <DashboardViewer embedUrl={embedUrl} isMobile={true} />
       
-      {/* CSS adicional para dispositivos móveis */}
-      <style jsx global>{`
+      <style>{`
         body {
           margin: 0;
           padding: 0;
@@ -31,7 +30,6 @@ const DashboardMobile = () => {
           -webkit-tap-highlight-color: transparent;
         }
         
-        /* Otimizações para iOS */
         @supports (-webkit-touch-callout: none) {
           .dashboard-container {
             -webkit-overflow-scrolling: touch;
@@ -39,14 +37,12 @@ const DashboardMobile = () => {
           }
         }
         
-        /* Otimizações para Android */
         @media screen and (-webkit-min-device-pixel-ratio: 0) {
           .dashboard-container {
             transform: translateZ(0);
           }
         }
         
-        /* Responsividade para diferentes tamanhos de tela mobile */
         @media screen and (max-width: 480px) {
           iframe {
             transform: scale(0.9);

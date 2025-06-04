@@ -10,15 +10,13 @@ const DashboardDesktop = () => {
     <div className="w-screen h-screen bg-white overflow-hidden">
       <DashboardViewer embedUrl={embedUrl} isMobile={false} />
       
-      {/* CSS adicional para desktop */}
-      <style jsx global>{`
+      <style>{`
         body {
           margin: 0;
           padding: 0;
           overflow: hidden;
         }
         
-        /* Otimizações para diferentes resoluções desktop */
         @media screen and (min-width: 1024px) {
           .dashboard-container {
             zoom: 1;
@@ -37,7 +35,6 @@ const DashboardDesktop = () => {
           }
         }
         
-        /* Suporte para Mac (Safari/WebKit) */
         @supports (-webkit-appearance: none) {
           iframe {
             -webkit-transform: translateZ(0);
@@ -45,14 +42,12 @@ const DashboardDesktop = () => {
           }
         }
         
-        /* Suporte para Windows (Edge/Chrome) */
         @supports (display: -ms-grid) {
           iframe {
             -ms-transform: translateZ(0);
           }
         }
         
-        /* Prevenção de zoom indesejado */
         iframe {
           pointer-events: auto;
           touch-action: manipulation;

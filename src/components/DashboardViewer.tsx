@@ -57,10 +57,8 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
         title="Dashboard Looker Studio"
       />
       
-      {/* CSS personalizado para ocultar header e footer do Looker Studio */}
-      <style jsx>{`
+      <style>{`
         iframe {
-          /* Remove scrollbars */
           scrollbar-width: none;
           -ms-overflow-style: none;
         }
@@ -68,7 +66,6 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
           display: none;
         }
         
-        /* Oculta elementos do Looker Studio via CSS injection */
         iframe::after {
           content: '';
           position: absolute;
