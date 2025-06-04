@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Loader2 } from 'lucide-react';
+import { useDashboardResponsive } from '../hooks/useDashboardResponsive';
 
 interface DashboardViewerProps {
   embedUrl: string;
@@ -9,40 +10,30 @@ interface DashboardViewerProps {
 
 const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = false }) => {
   const [isLoading, setIsLoading] = useState(true);
+  const responsiveConfig = useDashboardResponsive(isMobile);
 
   const handleIframeLoad = () => {
     setIsLoading(false);
   };
 
-  const containerStyle = isMobile 
-    ? "w-full h-screen bg-white relative overflow-hidden"
-    : "w-full h-screen bg-white relative overflow-hidden";
+  // Adiciona parâmetros do Looker Studio para ocultar header/footer programaticamente
+  const optimizedUrl = `${embedUrl}&chrome=false&embed=true&header=false&footer=false`;
 
-  const iframeStyle = isMobile
-    ? {
-        width: '100%',
-        height: '150%',
-        border: 'none',
-        margin: 0,
-        padding: 0,
-        overflow: 'hidden',
-        transform: 'translateY(-80px)',
-        position: 'absolute' as const,
-        top: 0,
-        left: 0
-      }
-    : {
-        width: '100%',
-        height: '120%',
-        border: 'none',
-        margin: 0,
-        padding: 0,
-        overflow: 'hidden',
-        transform: 'translateY(-60px)',
-        position: 'absolute' as const,
-        top: 0,
-        left: 0
-      };
+  const containerStyle = "w-full h-screen bg-white relative overflow-hidden";
+
+  const iframeStyle = {
+    width: responsiveConfig.width,
+    height: responsiveConfig.height,
+    border: 'none',
+    margin: 0,
+    padding: 0,
+    overflow: 'hidden',
+    transform: `scale(${responsiveConfig.scale}) translateY(${responsiveConfig.translateY}px)`,
+    transformOrigin: 'top left',
+    position: 'absolute' as const,
+    top: 0,
+    left: 0
+  };
 
   return (
     <div className={containerStyle}>
@@ -56,7 +47,7 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
       )}
       
       <iframe
-        src={embedUrl}
+        src={optimizedUrl}
         style={iframeStyle}
         onLoad={handleIframeLoad}
         allowFullScreen
@@ -73,36 +64,7 @@ const DashboardViewer: React.FC<DashboardViewerProps> = ({ embedUrl, isMobile = 
         iframe::-webkit-scrollbar {
           display: none;
         }
-        
-        /* Máscara para ocultar header */
-        .dashboard-mask::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 80px;
-          background: white;
-          z-index: 5;
-          pointer-events: none;
-        }
-        
-        /* Máscara para ocultar footer */
-        .dashboard-mask::after {
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          height: 120px;
-          background: white;
-          z-index: 5;
-          pointer-events: none;
-        }
       `}</style>
-      
-      {/* Máscara para ocultar header e footer */}
-      <div className="dashboard-mask absolute inset-0 pointer-events-none"></div>
     </div>
   );
 };
